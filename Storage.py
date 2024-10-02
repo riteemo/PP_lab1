@@ -1,10 +1,4 @@
-from Cleaner import *
-from Doctor import *
-from Guard import *
 from HospitalInhabitant import *
-from Nurse import *
-from Patient import *
-from Visitor import *
 
 class Storage:
     def __init__(self):
@@ -17,6 +11,12 @@ class Storage:
             "visitors": []
         }
 
-    def update(self, key: str, data: HospitalInhabitant):
-        self.storage[key].append(data)
+    def update(self, key: str, data: HospitalInhabitant) -> None:
+        self.storage[key].append(data) #DOBAVIT VALIDACIY PO PARAMETRY KEY
+
+    def get_all_of(self, key: str) -> list[HospitalInhabitant]:
+        return self.storage[key]
+
+    def delete(self, key: str) -> HospitalInhabitant:
+        return self.storage[key].pop()
 
