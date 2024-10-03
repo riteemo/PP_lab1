@@ -14,6 +14,9 @@ class Storage:
     def update(self, key: str, data: HospitalInhabitant) -> None:
         self.storage[key].append(data) #DOBAVIT VALIDACIY PO PARAMETRY KEY
 
+    def extend(self, key: str, data: list[HospitalInhabitant]) -> None:
+        self.storage[key].extend(data)
+
     def get_all_of(self, key: str) -> list[HospitalInhabitant]:
         return self.storage[key]
 
