@@ -6,7 +6,7 @@ class JSONHandler:
         try:
             with open(path) as json_input:
                 return load(json_input)
-        except Exception():
+        except FileNotFoundError:
             print("Read error occured")
 
     def write(self, path: str, data: dict) -> None:
@@ -16,6 +16,6 @@ class JSONHandler:
                 new_data[key] = list(map(lambda x: x.__dict__, new_data[key]))
             with open(path, "w") as json_output:
                 dump(new_data, json_output)
-        except Exception():
+        except FileNotFoundError:
             print("Write error occured")
 

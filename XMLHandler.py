@@ -1,4 +1,3 @@
-import xml.etree.ElementTree as ET
 from dicttoxml import dicttoxml
 from xmltodict import parse
 
@@ -8,7 +7,7 @@ class XMLHandler:
         try:
             with open(path) as xml_input:
                 return parse(xml_input.read())
-        except Exception():
+        except FileNotFoundError:
             print("Read error occured")
 
     def write(self, path: str, data: dict) -> None:
@@ -19,7 +18,7 @@ class XMLHandler:
             out = dicttoxml(new_data, attr_type=False)
             with open(path, "wb") as xml_output:
                 xml_output.write(out)
-        except Exception():
+        except FileNotFoundError:
             print("Write error occured")
 
 
