@@ -1,5 +1,6 @@
 from HospitalInhabitant import *
 
+# класс "хранилище"
 class Storage:
     def __init__(self):
         self.storage = {
@@ -11,15 +12,40 @@ class Storage:
             "visitors": []
         }
 
-    def update(self, key: str, data: HospitalInhabitant) -> None:
-        self.storage[key].append(data) #DOBAVIT VALIDACIY PO PARAMETRY KEY
+    # добавление записи
+    def add(self, key: str, data: HospitalInhabitant) -> None:
+        try:
+            self.storage[key].append(data)
+        except KeyError:
+            print("No such key in storage")
 
+    # обновление записи
+    def update(self, key: str, index: int, new: HospitalInhabitant) -> None:
+        try:
+            self.storage[key][index] = new
+        except KeyError:
+            print("No such key in storage")
+        except IndexError:
+            print("List index out of range")
+
+    # добавление записей
     def extend(self, key: str, data: list[HospitalInhabitant]) -> None:
-        self.storage[key].extend(data)
+        try:
+            self.storage[key].extend(data)
+        except KeyError:
+            print("No such key in storage")
 
+    # получение записей
     def get_all_of(self, key: str) -> list[HospitalInhabitant]:
-        return self.storage[key]
+        try:
+            return self.storage[key]
+        except KeyError:
+            print("No such key in storage")
 
+    # удаление записи
     def delete(self, key: str) -> HospitalInhabitant:
-        return self.storage[key].pop()
+        try:
+            return self.storage[key].pop()
+        except KeyError:
+            print("No such key in storage")
 
